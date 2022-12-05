@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 from setuptools.extension import Extension
-from scalene.scalene_version import scalene_version
+# from scalene.scalene_version import scalene_version
 from os import path, environ
 import sys
 import sysconfig
@@ -136,7 +136,7 @@ dev_build = ('.dev' + environ['DEV_BUILD']) if 'DEV_BUILD' in environ else ''
 
 setup(
     name="force_rc_error",
-    version=scalene_version + dev_build,
+    version= dev_build,
     description="force_rc_error: A high-resolution, low-overhead CPU, GPU, and memory profiler for Python",
     keywords="performance memory profiler",
     long_description_content_type="text/markdown",

@@ -27,7 +27,6 @@ int whereInPython(std::string& filename, int& lineno, int& bytei) {
   if (!Py_IsInitialized()) {  // No python, no python stack.
     return 0;
   }
-  // printf("UWU\n");
   // This function walks the Python stack until it finds a frame
   // corresponding to a file we are actually profiling. On success,
   // it updates filename, lineno, and byte code index appropriately,
@@ -61,7 +60,6 @@ PyObject* placeholder(PyObject* self, PyObject* args) {
   *p_where = whereInPython;
 
 
-  Py_RETURN_NONE;
   Py_RETURN_NONE;
 }
 
