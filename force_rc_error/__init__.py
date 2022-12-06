@@ -159,17 +159,20 @@ def free_signal_handler(
     del this_frame
 
 
-import numpy as np
+# import numpy as np
 
 def main1():
     # Before optimization
-    x = np.array(range(10**7))
-    y = np.array(np.random.uniform(0, 100, size=10**8))
+    pywhere.set_things()
+    pywhere.unset_things()
 
 def main2():
     # After optimization, spurious `np.array` removed.
-    x = np.array(range(10**7))
-    y = np.random.uniform(0, 100, size=10**8)
+    # x = np.array(range(10**7))
+    # y = np.random.uniform(0, 100, size=10**8)
+    for i in range(50):
+        pywhere.set_things()
+        pywhere.unset_things()
 
 
 def main():

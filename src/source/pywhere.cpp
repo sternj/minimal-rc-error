@@ -50,6 +50,9 @@ int whereInPython(std::string& filename, int& lineno, int& bytei) {
 return 0;
 }
 
+static char* something1;
+static char* something2;
+
 PyObject* placeholder(PyObject* self, PyObject* args) {
     auto p_where =
       (decltype(p_whereInPython)*)dlsym(RTLD_DEFAULT, "p_whereInPython");
@@ -62,9 +65,21 @@ PyObject* placeholder(PyObject* self, PyObject* args) {
 
   Py_RETURN_NONE;
 }
+PyObject* set_things(PyObject* self, PyObject* args) {
+  something1 = (char*) malloc(80000128);
+  something2 = (char*) malloc(800000128);
+} 
+PyObject* unset_things(PyObject* self, PyObject* args) {
+  free(something1);
+  something1 = NULL;
+  free(something2);
+  something2 = NULL;
+}
 
 static PyMethodDef EmbMethods[] = {
     {"placeholder", placeholder, METH_NOARGS, ""},
+    {"set_things", set_things, METH_NOARGS, ""},
+    {"unset_things", unset_things, METH_NOARGS, ""},
     {NULL, NULL, 0, NULL}};
 
 static PyModuleDef EmbedModule = {PyModuleDef_HEAD_INIT,
